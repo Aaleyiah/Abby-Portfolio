@@ -1,76 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abby — Portfolio</title>
-    <style>
-      body {
-        font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem;
-        color: #222;
-        line-height: 1.6;
-      } 
-      a { color: #0969da; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      .project {
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 1rem 1.25rem;
-        margin: 1rem 0;
-        } 
-      .project h3 { margin: 0 0 .25rem; }
-      .tags { color: #666; font-size: .9em;
-      footer {
-        margin-top: 3rem;
-        border-top: 1px solid #eee;
-        padding-top: 1rem; 
-        color: #669;
-        font-size: .9em;
-        }
-    </style>
-  </head>
-  <body> 
-    <header>
-      <h1>Hi, I'm Abby 👋</h1>
-      <p>this website is all about my interest and what i like.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Abby's personal portfolio — a little corner of the internet about me and the things I love.">
+  <title>Abby — Portfolio</title>
+  <style>
+    :root {
+      --accent: #6c5ce7;
+      --accent-dark: #5a4bd1;
+      --accent-soft: #f1eeff;
+      --text: #26232e;
+      --muted: #6f6a7c;
+      --card: #ffffff;
+      --border: #e9e5f2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 80% -10%, #efe9ff 0%, transparent 60%),
+        radial-gradient(900px 400px at -10% 20%, #ffeef5 0%, transparent 55%),
+        #fbfaff;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2.5rem;
+    }
+
+    .hero { margin-bottom: 3rem; }
+
+    .hero .hello {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid #ddd5ff;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      line-height: 1.15;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p.tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: 34em;
+    }
+
+    section { margin-bottom: 2.75rem; }
+
+    h2 {
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+      margin: 0 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 1px 2px rgba(38, 35, 46, 0.04);
+    }
+
+    .about-card p { margin: 0; }
+
+    .cards {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .cards li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.35rem 1.5rem;
+      box-shadow: 0 1px 2px rgba(38, 35, 46, 0.04);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .cards li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(108, 92, 231, 0.14);
+      border-color: #d9d0ff;
+    }
+
+    .cards .emoji {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .cards strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .cards p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="hello">My Portfolio</span>
+      <h1>Hi, I'm Abby</h1>
+      <p class="tagline">This website is all about my interests and what I like.</p>
     </header>
-  
-    <section>
-      <h2>About</h2>
-      <p>
-        im 15 years old, i was born in guatemala and i love to watch movies and shows.  
-      </p>
-    </section>
-<style>
-  .shows {
-    list-style: none;
-    padding: 0;
-  }
-  .shows li {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    margin: 1rem 0;
-  }
-  .shows strong {
-    display: block;
-    margin-bottom: .25rem;
-  }
-</style> 
-    
-    <section>
-      <h2>things im interested in</h2>
-      <ul class="shows">
-        <li>
-          <strong>My Hero Academia</strong> I love all the characters, and the story is amazing.
-        </li>
-        <li>
-          <strong>Howl's Moving Castle</strong> A rom-com, which I love — and all the fantasy stuff makes it even more interesting.
-        </li>
-        <li>
-          <strong>alient stage</strong> its not so long like other shows. IT sonly 50 minutes long and its very interestig. The plot and charachters are all very interesting. 
-        </li>
-    </section>
+
+    <main>
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="about-card">
+          <p>
+            I'm 15 years old and I was born in Guatemala.
+            I love watching movies and shows — the more characters to get attached to, the better.
+          </p>
+        </div>
+      </section>
+
+      <section id="interests">
+        <h2>Things I'm Interested In</h2>
+        <ul class="cards">
+          <li>
+            <span class="emoji">🦸</span>
+            <strong>My Hero Academia</strong>
+            <p>I love all the characters, and the story is amazing.</p>
+          </li>
+          <li>
+            <span class="emoji">🏰</span>
+            <strong>Howl's Moving Castle</strong>
+            <p>A rom-com, which I love — and all the fantasy stuff makes it even more interesting.</p>
+          </li>
+          <li>
+            <span class="emoji">🎤</span>
+            <strong>Alien Stage</strong>
+            <p>It's not as long as other shows — it's only 50 minutes long. The plot and characters are all really interesting.</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Abby</span>
+      <span>Made with love</span>
+    </footer>
+  </div>
+</body>
+</html>
